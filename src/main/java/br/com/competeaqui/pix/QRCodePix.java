@@ -21,6 +21,7 @@ import static java.lang.Integer.toHexString;
 
 /**
  * Gera um QRCode para fazer transferências PIX "Copia e Cola".
+ * @see DadosEnvioPix
  * @author Manoel Campos da Silva Filho
  * @see #generate()
  */

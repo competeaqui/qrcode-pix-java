@@ -14,6 +14,7 @@ import java.math.BigDecimal;
  * @param valor             valor a ser transferido (máx 13 caracteres)
  * @param cidadeRemetente   cidade de origem do remetente (máx 15 caracteres)
  * @param descricao         descrição da transação (opcional)
+ * @see QRCodePix
  * @author Manoel Campos da Silva Filho
  */
 public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, BigDecimal valor, String cidadeRemetente, String descricao) {
