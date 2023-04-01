@@ -184,18 +184,26 @@ public final class QRCodePix {
 
     private String generateInternal(final JSONObject jsonObj) {
         final var sb = new StringBuilder();
-        jsonObj.keySet().stream().sorted().forEach(keyName -> {
-            final Object keyValue = jsonObj.get(keyName);
-            if(keyValue instanceof JSONObject jsonObjValue) {
-                final var str = generateInternal(jsonObjValue);
-                sb.append(leftPad(keyName)).append(strLenLeftPadded(str)).append(str);
-            } else {
-                final var str = keyName.equals(COD_CAMPO_VALOR) ? keyValue.toString() : removeSpecialChars(keyValue);
-                sb.append(leftPad(keyName)).append(strLenLeftPadded(str)).append(str);
-            }
+        jsonObj.keySet().stream().sorted().forEach(key -> {
+            final Object value = jsonObj.get(key);
+            final String str = encodeValue(key, value);
+            sb.append(leftPad(key)).append(strLenLeftPadded(str)).append(str);
         });
 
         return sb.toString();
+    }
+
+    /**
+     * Codifica o valor de uma chave do objeto JSON com configurações
+     * para geração do QRCode, conforme as especificações do PIX.
+     * @param key nome da chave no objeto JSON contendo parte dos dados
+     * @param value valor para a chave correspondente no objeto JSON
+     * @return o valor da chave codificado
+     */
+    private String encodeValue(final String key, final Object value) {
+        if(value instanceof JSONObject jsonObjValue)
+            return generateInternal(jsonObjValue);
+        return key.equals(COD_CAMPO_VALOR) ? value.toString() : removeSpecialChars(value);
     }
 
     /**
