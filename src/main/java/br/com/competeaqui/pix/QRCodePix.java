@@ -169,8 +169,17 @@ public final class QRCodePix {
     public String generate() {
         final String partialCode = generateInternal(newJSONObject()) + COD_CRC;
         final String checksum = crcChecksum(partialCode);
-        this.qrCode = partialCode + checksum;
-        return this.qrCode;
+        return setQrCode(partialCode + checksum);
+    }
+
+    /**
+     * Armazena o último QRCode gerado.
+     * @param qrCode QR Code gerado
+     * @return
+     */
+    private String setQrCode(final String qrCode) {
+        this.qrCode = qrCode;
+        return qrCode;
     }
 
     private String generateInternal(final JSONObject jsonObj) {
