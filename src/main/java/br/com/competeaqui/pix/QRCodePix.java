@@ -201,8 +201,11 @@ public final class QRCodePix {
      * @return o valor da chave codificado
      */
     private String encodeValue(final String key, final Object value) {
+        //Se o valor para a chave contém outro objeto, processa seus atributos recursivamente
         if(value instanceof JSONObject jsonObjValue)
             return generateInternal(jsonObjValue);
+
+        //Se o valor é String ou um tipo primitivo
         return key.equals(COD_CAMPO_VALOR) ? value.toString() : removeSpecialChars(value);
     }
 
