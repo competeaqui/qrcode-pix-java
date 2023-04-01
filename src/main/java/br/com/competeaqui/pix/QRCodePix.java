@@ -124,11 +124,12 @@ public final class QRCodePix {
     }
 
     /**
-     * Cria uma representação em JSON dos dados completos para gerar o QRCode.
-     * @return uma String contendo um objeto JSON
+     * Cria um objeto JSON contendo os dados completos para gerar o QRCode.
+     *
+     * @return o objeto JSON criado
      * @see #generate()
      */
-    private String toJson() {
+    private JSONObject newJSONObject() {
         final var jsonTemplate =
             """
             {
@@ -156,7 +157,7 @@ public final class QRCodePix {
                         PFI, ARRANJO_PAGAMENTO, dadosPix.chaveDestinatario(), dadosPix.descricao(),
                         MCC, COD_MOEDA, COD_CAMPO_VALOR, dadosPix.valorStr(), COD_PAIS,
                         dadosPix.nomeDestinatario(), dadosPix.cidadeRemetente(), idTransacao);
-        return json;
+        return new JSONObject(json);
     }
 
     /**
@@ -166,7 +167,7 @@ public final class QRCodePix {
      * @see #toString()
      */
     public String generate() {
-        final String partialCode = generateInternal(new JSONObject(toJson())) + COD_CRC;
+        final String partialCode = generateInternal(newJSONObject()) + COD_CRC;
         final String checksum = crcChecksum(partialCode);
         this.qrCode = partialCode + checksum;
         return this.qrCode;
