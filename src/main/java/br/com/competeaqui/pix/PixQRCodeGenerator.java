@@ -16,9 +16,9 @@ public class PixQRCodeGenerator {
         final var dadosPix =
                 DadosEnvioPix.builder()
                         .chavePix("manoelcampos@gmail.com")
-                        .descricao("lib")
-                        .nomeRecebedor("MANOEL")
-                        .cidade("PMW")
+                        .descricao("Testando PIX")
+                        .nomeRecebedor("MANOEL CAMPOS")
+                        .cidade("Palmas")
                         .valor(new BigDecimal(1.0))
                         .build();
 
