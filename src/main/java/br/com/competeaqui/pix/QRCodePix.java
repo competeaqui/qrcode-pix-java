@@ -1,5 +1,9 @@
 package br.com.competeaqui.pix;
 
+/*
+ * Classe baseada em uma biblioteca PHP disponível em https://github.com/renatomb/php_qrcode_pix.
+*/
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;

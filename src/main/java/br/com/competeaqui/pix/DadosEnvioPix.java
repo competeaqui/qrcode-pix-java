@@ -1,5 +1,9 @@
 package br.com.competeaqui.pix;
 
+/*
+ * Classe baseada em uma biblioteca PHP disponível em https://github.com/renatomb/php_qrcode_pix.
+ */
+
 import java.math.BigDecimal;
 
 /**
