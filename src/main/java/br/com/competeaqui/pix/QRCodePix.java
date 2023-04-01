@@ -145,9 +145,9 @@ public final class QRCodePix {
         final var json =
             jsonTemplate
                 .formatted(
-                        PFI, ARRANJO_PAGAMENTO, dadosPix.chavePix(), dadosPix.descricao(),
+                        PFI, ARRANJO_PAGAMENTO, dadosPix.chaveDestinatario(), dadosPix.descricao(),
                         MCC, MOEDA, COD_CAMPO_VALOR, formatNumber(dadosPix.valor()), COD_PAIS,
-                        dadosPix.nomeRecebedor(), dadosPix.cidade(), idTransacao);
+                        dadosPix.nomeDestinatario(), dadosPix.cidadeRemetente(), idTransacao);
         return json;
     }
 
