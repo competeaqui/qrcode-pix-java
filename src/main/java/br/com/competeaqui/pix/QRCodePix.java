@@ -126,6 +126,7 @@ public final class QRCodePix {
     /**
      * Cria uma representação em JSON dos dados completos para gerar o QRCode.
      * @return uma String contendo um objeto JSON
+     * @see #generate()
      */
     private String toJson() {
         final var jsonTemplate =
@@ -226,10 +227,22 @@ public final class QRCodePix {
         return leftPad(len);
     }
 
+    /**
+     * Inclui zero à esquerda de um código de um campo do QRCode PIX (se necessário),
+     * pois todos os códigos devem ter 2 dígitos.
+     * @param code código de um campo do QRCode PIX
+     * @return o código com um possível zero à esquerda
+     */
     private String leftPad(final String code) {
         return leftPad(code, 2);
     }
 
+    /**
+     * Inclui uma determinada quantidade de zeros à esquerda de um valor.
+     * @param code código pra incluir zeros à esquerda
+     * @param len tamanho máximo da String retornada
+     * @return o código com possíveis zeros à esquerda
+     */
     private String leftPad(final String code, final int len) {
         final var format = "%1$" + len + "s";
         return format.formatted(code).replace(' ', '0');
