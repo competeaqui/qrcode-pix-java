@@ -8,7 +8,7 @@ Classes para geração de QRCode PIX "Copia e Cola"
 Copie o código e cole no app do seu banco.
 
 ```
-00020126690014BR.GOV.BCB.PIX01326c32bb217b21474e9ce3efe24a823ff90211PIX em Java52040000530398654041.005802BR5925Manoel Campos da Silva Fh6006Palmas62070503***6304A390
+00020126590014BR.GOV.BCB.PIX0122manoelcampos@gmail.com0211PIX em Java52040000530398654041.005802BR5925Manoel Campos da Silva Fh6006Palmas62070503***6304FEC1
 ```
 
 ### 1.2. Ou escaneie o QRCode abaixo no app do seu banco:
