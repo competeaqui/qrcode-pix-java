@@ -16,9 +16,9 @@ public class AppPixQRCodeGenerator {
 
         final var dadosPix =
                 DadosEnvioPix.builder()
-                        .chavePix("manoelcampos@gmail.com")
-                        .descricao("Testando PIX")
-                        .nomeRecebedor("MANOEL CAMPOS")
+                        .chavePix("6c32bb21-7b21-474e-9ce3-efe24a823ff9")
+                        .descricao("PIX em Java")
+                        .nomeRecebedor("Manoel Campos da Silva Fh")
                         .cidade("Palmas")
                         .valor(new BigDecimal(1.0))
                         .build();
