@@ -21,7 +21,8 @@ public class AppPixQRCodeGenerator {
 
         final var qrCodePix = new QRCodePix(dadosPix);
         qrCodePix.save(imageFileName);
-        System.out.println("QRCode:\n" + qrCodePix);
-        System.out.println("Arquivo gerado em " + imageFileName);
+        System.out.println("QRCode:");
+        System.out.println(qrCodePix);
+        System.out.printf("%nArquivo gerado em " + imageFileName);
     }
 }
