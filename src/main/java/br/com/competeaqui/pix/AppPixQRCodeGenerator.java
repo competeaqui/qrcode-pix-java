@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * @see <a href="https://github.com/bacen/pix-api">Documentação oficial do PIX no repositório do Banco Central</a>
  * @author Manoel Campos da Silva Filho
  */
-public class AppPixQRCodeGenerator {
+class AppPixQRCodeGenerator {
     public static void main(String[] args) {
         final var imageFileName = "qrcode.png";
 
