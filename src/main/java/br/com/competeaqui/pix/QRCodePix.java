@@ -194,9 +194,9 @@ public final class QRCodePix {
      */
     private String crcChecksum(final String partialCode){
         int crc = 0xFFFF;
-        final var len = partialCode.length();
-        for (int c = 0; c < len; c++) {
-            crc ^= partialCode.codePointAt(c) << 8;
+        final var byteArray = partialCode.getBytes();
+        for (final byte b : byteArray) {
+            crc ^= b << 8;
             for (int i = 0; i < 8; i++) {
                 if ((crc & 0x8000) == 0)
                     crc = crc << 1;
