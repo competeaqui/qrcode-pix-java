@@ -9,7 +9,7 @@ import java.math.BigDecimal;
  * @see <a href="https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/II_ManualdePadroesparaIniciacaodoPix.pdf">Manual de Padrões para Iniciação do Pix (BCB)</a>
  * @author Manoel Campos da Silva Filho
  */
-public class PixQRCodeGenerator {
+public class AppPixQRCodeGenerator {
     public static void main(String[] args) {
         final var imageFileName = "qrcode.png";
 
