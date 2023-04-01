@@ -64,30 +64,6 @@ public final class QRCodePix {
 
     /**
      * Identificador único da transação (máx 25 caracteres).
-     *
-     * <p>Logo do lançamento do pix os aplicativos não estavam implicando com esse campo e até mesmo
-     * os BRCodes gerados em aplicativos de alguns bancos não apresentavam esse campo.
-     * Porém recentemente identifiquei que algumas instituições já não estão processando os pix na ausência
-     * desse campo. Trtaado na issue https://github.com/renatomb/php_qrcode_pix/issues/2
-     *
-     * Conforme o Manual de Padrões para Iniciação do Pix ver 2.2 na página 5, nota de rodapé, temos: "Conclui-se
-     * que, se o gerador do QR optar por não utilizar um  transactionID, o valor ‘***’ deverá ser usado para indicar
-     * essa escolha." Diante disso estou atribuindo como sugestão neste exemplo, linha 38, o uso de *** no 6205.
-     *
-     * O conteúdo desse campo é gerado pelo recebedor do pix. Devendo ser um valor único para cada transação, ou ***
-     * quando não for usado pois esse passa a ser gerado automaticamente. Dada a necessidade de identificador único,
-     * caso haja a opção pelo uso do mesmo recomendo a utilização de um UUID vinculado ao sistema do recebedor, o que
-     * permitirá a conciliação dos pagamentos que foram recebidos.
-     *
-     * Entretanto, conforme discutido na issue https://github.com/bacen/pix-api/issues/214 o Banco Itaú bloqueia
-     * qualquer código de transação que não tenha sido gerado previamente no aplicativo da instituição. Necessário
-     * solicitar ao gerente da conta a liberação para que a conta do recebedor possa gerar qrcode do pix fora do
-     * aplicativo do banco. É possível que outras instituições passem a adotar esse posicionamento no futuro e até
-     * mesmo venham a cobrar por isso.
-     *
-     * Com o uso de QR Code dinâmicos é possível inclusive definir um webHook onde o cliente final seja notificado
-     * automaticamente quando determinada transação for recebida. Mas para isso consulte os detalhes da API da sua
-     * instituição.</p>
      * @see #ID_TRANSACAO_VAZIO
      */
     private final String idTransacao;
@@ -100,16 +76,38 @@ public final class QRCodePix {
     private String qrCode;
 
     /**
-     * Cria um objeto QRCodePix gerando um UUID como id da transação
+     * Cria um objeto QRCodePix sem um id da transação
      * @param dadosPix Dados preenchidos pelo usuário para envio do PIX
+     * @see QRCodePix#QRCodePix(DadosEnvioPix, String)
      */
     public QRCodePix(final DadosEnvioPix dadosPix) {
         this(dadosPix, ID_TRANSACAO_VAZIO);
     }
 
     /**
+     * Cria um objeto QRCodePix com um id de transação único.
      * @param dadosPix Dados preenchidos pelo usuário para envio do PIX
      * @param idTransacao Identificador único da transação (máx 25 caracteres). Usar *** quando for omitido.
+     *
+     * <p>No lançamento do pix os aplicativos estavam ignorando esse campo e até mesmo
+     * os BRCodes gerados em aplicativos de alguns bancos não apresentavam esse campo.
+     * Porém, recentemente identificou-se que algumas instituições já não estão processando os pix na ausência
+     * desse campo. Ver https://github.com/renatomb/php_qrcode_pix/issues/2</p>
+     *
+     * <p>O conteúdo desse campo é gerado pelo recebedor do pix. Devendo ser um valor único para cada transação, ou ***
+     * quando não for usado, pois esse passa a ser gerado automaticamente. Dada a necessidade de identificador único,
+     * caso haja a opção pelo uso do mesmo, recomendo a utilização de um UUID vinculado ao sistema do recebedor,
+     * o que permitirá a conciliação dos pagamentos que foram recebidos.</p>
+     *
+     * <p>Entretanto, conforme discutido na issue https://github.com/bacen/pix-api/issues/214, o Banco Itaú bloqueia
+     * qualquer código de transação que não tenha sido gerado previamente no aplicativo da instituição.
+     * Desta forma, é necessário solicitar ao gerente da conta a liberação para que a conta do recebedor possa
+     * gerar qrcode do pix fora do aplicativo do banco.
+     * É possível que outras instituições passem a adotar esse posicionamento no futuro.</p>
+     *
+     * <p>Com o uso de QR Code dinâmicos pode-se inclusive definir um WebHook onde o cliente final seja notificado
+     * automaticamente quando determinada transação for recebida. Consulte os detalhes da API da sua instituição.</p>
+     * @see QRCodePix#QRCodePix(DadosEnvioPix)
      */
     public QRCodePix(final DadosEnvioPix dadosPix, final String idTransacao) {
         if(idTransacao.length() > 25) {
