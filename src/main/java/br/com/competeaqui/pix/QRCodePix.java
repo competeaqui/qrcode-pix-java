@@ -146,7 +146,7 @@ public final class QRCodePix {
             jsonTemplate
                 .formatted(
                         PFI, ARRANJO_PAGAMENTO, dadosPix.chaveDestinatario(), dadosPix.descricao(),
-                        MCC, MOEDA, COD_CAMPO_VALOR, formatNumber(dadosPix.valor()), COD_PAIS,
+                        MCC, MOEDA, COD_CAMPO_VALOR, dadosPix.valorStr(), COD_PAIS,
                         dadosPix.nomeDestinatario(), dadosPix.cidadeRemetente(), idTransacao);
         return json;
     }
@@ -226,14 +226,6 @@ public final class QRCodePix {
     private String leftPad(final String code, final int len) {
         final var format = "%1$" + len + "s";
         return format.formatted(code).replace(' ', '0');
-    }
-
-    /**
-     * Obtém um valor com ponto como separador de decimais e apenas 2 casas
-     * @return
-     */
-    public String formatNumber(final BigDecimal valor){
-        return String.format("%.2f", valor);
     }
 
     /**
