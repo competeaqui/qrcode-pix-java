@@ -7,16 +7,16 @@ import java.math.BigDecimal;
 /**
  * Dados a serem preenchidos pelo usuário para envio de um PIX.
  *
- * @author Manoel Campos da Silva Filho
  * @param chaveDestinatario chave PIX do destinatário
- * @param descricao descrição da transação (opcional)
- * @param nomeDestinatario nome do destinatário do PIX (máx 25 caracteres)
- * @param cidadeRemetente cidade de origem do PIX (máx 15 caracteres)
- * @param valor valor a ser transferido (máx 13 caracteres)
+ * @param nomeDestinatario  nome do destinatário (máx 25 caracteres)
+ * @param valor             valor a ser transferido (máx 13 caracteres)
+ * @param cidadeRemetente   cidade de origem do remetente (máx 15 caracteres)
+ * @param descricao         descrição da transação (opcional)
  * @author Manoel Campos da Silva Filho
  */
 @Builder
-public record DadosEnvioPix(String chaveDestinatario, String descricao, String nomeDestinatario, String cidadeRemetente, BigDecimal valor) {
+public record DadosEnvioPix(String chaveDestinatario, String nomeDestinatario, BigDecimal valor, String cidadeRemetente, String descricao) {
+
     public DadosEnvioPix {
         if(nomeDestinatario.length() > 25) {
             final var msg = "Nome do destinatário não pode ter mais que 25 caracteres. '%s' tem %d caracteres."
