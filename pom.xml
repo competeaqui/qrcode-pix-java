@@ -8,6 +8,41 @@
     <artifactId>qrcode-pix</artifactId>
     <version>0.0.1</version>
 
+    <name>Java QRCode Pix</name>
+    <description>
+        Biblioteca Java para geração de QRCode PIX "Copia e Cola",
+        permitindo exportar o código para uma imagem.
+    </description>
+
+    <inceptionYear>2023</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>GPLv3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Manoel Campos da Silva Filho</name>
+            <email>manoelcampos@gmail.com</email>
+            <organization>Compete Aqui</organization>
+            <organizationUrl>http://competeaqui.com.br</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:competeaqui/qrcode-pix-java.git</connection>
+        <developerConnection>scm:git:git@github.com:competeaqui/qrcode-pix-java.git</developerConnection>
+        <url>git@github.com:competeaqui/qrcode-pix-java.git</url>
+    </scm>
+
+    <issueManagement>
+        <url>https://github.com/competeaqui/qrcode-pix-java/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
