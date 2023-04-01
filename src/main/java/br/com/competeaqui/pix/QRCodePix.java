@@ -202,7 +202,7 @@ public final class QRCodePix {
     }
 
     private String removeSpecialChars(final Object value) {
-        return value.toString().replaceAll("[^a-zA-Z0-9@\\.\\*\\s]", "");
+        return value.toString().replaceAll("[^a-zA-Z0-9\\-@\\.\\*\\s]", "");
     }
 
     /**
