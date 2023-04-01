@@ -4,9 +4,10 @@ import java.math.BigDecimal;
 
 /**
  * Gera um QRCode PIX "Copia e Cola" e a devida imagem na pasta atual.
+ * Este projeto foi baseado em uma biblioteca PHP disponível em
+ * <a href="https://github.com/renatomb/php_qrcode_pix">https://github.com/renatomb/php_qrcode_pix</a>.
  *
- * @see <a href="https://qrcodepix.dinheiro.tech>https://qrcodepix.dinheiro.tech</a>
- * @see <a href="https://www.bcb.gov.br/content/estabilidadefinanceira/pix/Regulamento_Pix/II_ManualdePadroesparaIniciacaodoPix.pdf">Manual de Padrões para Iniciação do Pix (BCB)</a>
+ * @see <a href="https://github.com/bacen/pix-api">Documentação oficial do PIX no repositório do Banco Central</a>
  * @author Manoel Campos da Silva Filho
  */
 public class AppPixQRCodeGenerator {
