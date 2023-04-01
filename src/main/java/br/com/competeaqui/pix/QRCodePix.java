@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.EnumMap;
 
 import static java.lang.Integer.toHexString;
@@ -31,7 +30,7 @@ public final class QRCodePix {
      * Código para identificar o campo com o checksum do QRCode gerado.
      * @see #crcChecksum(String)
      */
-    public static final String CRC_CODE = "6304";
+    public static final String COD_CRC = "6304";
 
     /**
      * Código de país no formato ISO3166-1 alpha 2
@@ -41,7 +40,7 @@ public final class QRCodePix {
     /**
      * Moeda, "986" = BRL: Real Brasileiro - ISO4217
      */
-    private static final String MOEDA = "986";
+    private static final String COD_MOEDA = "986";
 
     /**
      * Arranjo específico; Código "00" (GUI) obrigatório e valor fixo: br.gov.bcb.pix
@@ -59,7 +58,12 @@ public final class QRCodePix {
     private static final String COD_CAMPO_VALOR = "54";
 
     /**
-     * Identificador único da transação (máx 25 caracteres). Usar *** quando for omitido.
+     * Valor para o {@link #idTransacao} quando o campo não for informado.
+     */
+    private static final String ID_TRANSACAO_VAZIO = "***";
+
+    /**
+     * Identificador único da transação (máx 25 caracteres).
      *
      * <p>Logo do lançamento do pix os aplicativos não estavam implicando com esse campo e até mesmo
      * os BRCodes gerados em aplicativos de alguns bancos não apresentavam esse campo.
@@ -84,6 +88,7 @@ public final class QRCodePix {
      * Com o uso de QR Code dinâmicos é possível inclusive definir um webHook onde o cliente final seja notificado
      * automaticamente quando determinada transação for recebida. Mas para isso consulte os detalhes da API da sua
      * instituição.</p>
+     * @see #ID_TRANSACAO_VAZIO
      */
     private final String idTransacao;
 
@@ -99,7 +104,7 @@ public final class QRCodePix {
      * @param dadosPix Dados preenchidos pelo usuário para envio do PIX
      */
     public QRCodePix(final DadosEnvioPix dadosPix) {
-        this(dadosPix, "***");
+        this(dadosPix, ID_TRANSACAO_VAZIO);
     }
 
     /**
@@ -146,7 +151,7 @@ public final class QRCodePix {
             jsonTemplate
                 .formatted(
                         PFI, ARRANJO_PAGAMENTO, dadosPix.chaveDestinatario(), dadosPix.descricao(),
-                        MCC, MOEDA, COD_CAMPO_VALOR, dadosPix.valorStr(), COD_PAIS,
+                        MCC, COD_MOEDA, COD_CAMPO_VALOR, dadosPix.valorStr(), COD_PAIS,
                         dadosPix.nomeDestinatario(), dadosPix.cidadeRemetente(), idTransacao);
         return json;
     }
@@ -158,7 +163,7 @@ public final class QRCodePix {
      * @see #toString()
      */
     public String generate() {
-        final String partialCode = generateInternal(new JSONObject(toJson())) + CRC_CODE;
+        final String partialCode = generateInternal(new JSONObject(toJson())) + COD_CRC;
         final String checksum = crcChecksum(partialCode);
         this.qrCode = partialCode + checksum;
         return this.qrCode;

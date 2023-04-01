@@ -1,21 +1,21 @@
 package br.com.competeaqui.pix;
 
-import lombok.Builder;
-
 import java.math.BigDecimal;
 
 /**
  * Dados a serem preenchidos pelo usuário para envio de um PIX.
  *
- * @param chaveDestinatario chave PIX do destinatário
  * @param nomeDestinatario  nome do destinatário (máx 25 caracteres)
+ * @param chaveDestinatario chave PIX do destinatário
  * @param valor             valor a ser transferido (máx 13 caracteres)
  * @param cidadeRemetente   cidade de origem do remetente (máx 15 caracteres)
  * @param descricao         descrição da transação (opcional)
  * @author Manoel Campos da Silva Filho
  */
-@Builder
-public record DadosEnvioPix(String chaveDestinatario, String nomeDestinatario, BigDecimal valor, String cidadeRemetente, String descricao) {
+public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, BigDecimal valor, String cidadeRemetente, String descricao) {
+    public DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, BigDecimal valor, String cidadeRemetente) {
+        this(nomeDestinatario, chaveDestinatario, valor, cidadeRemetente, "");
+    }
 
     public DadosEnvioPix {
         if(nomeDestinatario.length() > 25) {

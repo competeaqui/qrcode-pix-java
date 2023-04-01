@@ -15,13 +15,9 @@ public class AppPixQRCodeGenerator {
         final var imageFileName = "qrcode.png";
 
         final var dadosPix =
-                DadosEnvioPix.builder()
-                        .cidadeRemetente("Palmas")
-                        .nomeDestinatario("Manoel Campos da Silva Fh")
-                        .chaveDestinatario("manoelcampos@gmail.com")
-                        .valor(new BigDecimal(1.0))
-                        .descricao("PIX em Java")
-                        .build();
+                new DadosEnvioPix(
+                        "Manoel Campos da Silva Fh", "manoelcampos@gmail.com",
+                        new BigDecimal(1.0), "Palmas", "PIX em Java");
 
         final var qrCodePix = new QRCodePix(dadosPix);
         qrCodePix.save(imageFileName);
