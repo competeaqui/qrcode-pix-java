@@ -56,7 +56,7 @@ public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, B
      * @return
      */
     private static String formatNumber(final BigDecimal value){
-        return String.format("%.2f", value);
+        return String.format("%.2f", value).formatted().replace(",", ".");
     }
 }
 
