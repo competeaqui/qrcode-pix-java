@@ -126,6 +126,19 @@ public final class QRCodePix {
     }
 
     /**
+     * {@return um nome de arquivo PNG temporário} que pode ser usado para
+     * {@link #save(String) salvar} a imagem do QRCode {@link #generate() gerado}.
+     * @throws IOException
+     */
+    static String tempImgFilePath() {
+        try {
+            return File.createTempFile("qrcode-pix-", ".png").getAbsoluteFile().getPath();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    /**
      * Cria um objeto JSON contendo os dados completos para gerar o QRCode.
      *
      * @return o objeto JSON criado
