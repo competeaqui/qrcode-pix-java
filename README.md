@@ -32,6 +32,10 @@ A aplicação de exemplo disponível na classe [AppPixQRCodeGenerator.java](src/
 
 Este projeto foi baseado em uma biblioteca PHP disponível em https://github.com/renatomb/php_qrcode_pix.
 
-## 5. Links
+## 5. Licença
+
+O projeto é licenciado sob a [GPLv3](LICENSE) e disponibilizado como está. Nenhuma responsabilidade deve ser atribuída aos desenvolvedores pelo uso da biblioteca.
+
+## 6. Links
 
 - [Documentação oficial do PIX no repositório do Banco Central](https://github.com/bacen/pix-api)
