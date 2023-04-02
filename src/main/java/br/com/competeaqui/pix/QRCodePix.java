@@ -24,6 +24,7 @@ import static java.lang.Integer.toHexString;
  * @see DadosEnvioPix
  * @author Manoel Campos da Silva Filho
  * @see #generate()
+ * @see #save(String)
  */
 public final class QRCodePix {
     /**
