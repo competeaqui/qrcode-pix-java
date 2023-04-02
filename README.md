@@ -36,6 +36,10 @@ Este projeto foi baseado em uma biblioteca PHP disponível em https://github.com
 
 O projeto é licenciado sob a [GPLv3](LICENSE) e disponibilizado como está. Nenhuma responsabilidade deve ser atribuída aos desenvolvedores pelo uso da biblioteca.
 
-## 6. Links
+## 6. Contribuição
+
+Uma das formas de contribuir com o projeto é considerar o pagamento do QRCode mostrado acima, mas há diferentes outras forma que você pode verificar no [Guia de Contribuição](CONTRIBUTNG.md).
+
+## 7. Links
 
 - [Documentação oficial do PIX no repositório do Banco Central](https://github.com/bacen/pix-api)
