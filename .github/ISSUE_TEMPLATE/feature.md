@@ -1,5 +1,5 @@
 ---
-name: Template de Feature
+name: Feature
 about: Solicitar um novo recurso
 title: 'Solicite um recurso'
 labels: 'feature;enhancement'
