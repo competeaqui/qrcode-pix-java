@@ -46,7 +46,6 @@ class QRCodePixTest {
      */
     @Test
     void toStringEmptyBeforeGenerate() {
-        final var instance = new QRCodePix(DADOS);
         assertTrue(instance.toString().isEmpty());
         instance.generate();
         assertFalse(instance.toString().isEmpty());
@@ -58,7 +57,6 @@ class QRCodePixTest {
      */
     @Test
     void toStringEmptyBeforeSave() {
-        final var instance = new QRCodePix(DADOS);
         assertTrue(instance.toString().isEmpty());
         instance.save(tempImgFilePath());
         assertFalse(instance.toString().isEmpty());
