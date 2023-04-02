@@ -79,7 +79,7 @@ public final class QRCodePix {
     /**
      * Último QRCode gerado.
      */
-    private String qrCode = "";
+    private String code = "";
 
     /**
      * Cria um objeto QRCodePix sem um id da transação
@@ -171,17 +171,17 @@ public final class QRCodePix {
     public String generate() {
         final String partialCode = generateInternal(newJSONObject()) + COD_CRC;
         final String checksum = crcChecksum(partialCode);
-        return setQrCode(partialCode + checksum);
+        return setCode(partialCode + checksum);
     }
 
     /**
      * Armazena o último QRCode gerado.
-     * @param qrCode QR Code gerado
+     * @param code QR Code gerado
      * @return
      */
-    private String setQrCode(final String qrCode) {
-        this.qrCode = qrCode;
-        return qrCode;
+    private String setCode(final String code) {
+        this.code = code;
+        return code;
     }
 
     private String generateInternal(final JSONObject jsonObj) {
@@ -285,10 +285,10 @@ public final class QRCodePix {
 
         final var writer = new QRCodeWriter();
         try {
-            if(qrCode == null || qrCode.isBlank())
+            if(code == null || code.isBlank())
                 generate();
 
-            final var bitMatrix = writer.encode(qrCode, BarcodeFormat.QR_CODE, tamanho, tamanho, hintsMap);
+            final var bitMatrix = writer.encode(code, BarcodeFormat.QR_CODE, tamanho, tamanho, hintsMap);
             final var image = new BufferedImage(tamanho, tamanho, BufferedImage.TYPE_INT_RGB);
             for (int y = 0; y < tamanho; y++) {
                 for (int x = 0; x < tamanho; x++) {
@@ -317,6 +317,6 @@ public final class QRCodePix {
      */
     @Override
     public String toString() {
-        return qrCode;
+        return code;
     }
 }
