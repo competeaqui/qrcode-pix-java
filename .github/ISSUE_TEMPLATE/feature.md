@@ -2,7 +2,7 @@
 name: Feature
 about: Solicitar um novo recurso
 title: 'Solicite um recurso'
-labels: 'feature;enhancement'
+labels: 'enhancement'
 assignees: ''
 
 ---
