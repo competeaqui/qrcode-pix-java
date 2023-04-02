@@ -79,7 +79,7 @@ public final class QRCodePix {
     /**
      * Último QRCode gerado.
      */
-    private String qrCode;
+    private String qrCode = "";
 
     /**
      * Cria um objeto QRCodePix sem um id da transação
