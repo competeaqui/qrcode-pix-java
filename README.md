@@ -4,26 +4,29 @@ Biblioteca Java para geração de QRCode PIX "Copia e Cola" e exportação do c�
 
 ## 1. Exemplo de PIX Gerado
 
-### 1.1. Você pode usar o código abaixo para o PIX "Copia e Cola".
-Copie o código e cole no app do seu banco.
+O projeto vem com uma aplicação console de exemplo que gera o código do PIX "Copia e Cola" e salva o QRCode em um arquivo `qrcode.png` na raiz do projeto.
+
+Para testar, você pode abrir o app do seu banco e executar qualquer um dos passos a seguir. 
+
+> **Note:** Considere pagar o PIX como uma contribuição para o projeto. Isso nos ajuda a continuar o desenvolvimento.
+
+### 1.1. Copiar o código abaixo e colar na opção "PIX Copia e Cola".
 
 ```
 00020126590014BR.GOV.BCB.PIX0122manoelcampos@gmail.com0211PIX em Java52040000530398654041.005802BR5925Manoel Campos da Silva Fh6006Palmas62070503***6304FEC1
 ```
 
-### 1.2. Ou escaneie o QRCode abaixo no app do seu banco:
+### 1.2. Escanear este QRCode
 
 ![qrcode.png](images%2Fqrcode.png)
 
-## 2. Build
+## 2. Requisitos
 
-O projeto requer maven e o JDK 17 instalados para fazer o build.
+O projeto requer uma versão atualizada do maven e o JDK 17+ instalados para fazer build e JRE 17+ para execução.
 
 ## 3. Rodando a Aplicação
 
-Abra a classe [AppPixQRCodeGenerator.java](src/main/java/br/com/competeaqui/pix/AppPixQRCodeGenerator.java) no seu IDE e execute.
-
-Uma imagem `qrcode.png` é salva na raiz do projeto quando a aplicação termina.
+A aplicação de exemplo disponível na classe [AppPixQRCodeGenerator.java](src/main/java/br/com/competeaqui/pix/AppPixQRCodeGenerator.java) gerou o código PIX mostrando anteriormente. A forma mais fácil de executar a aplicação é abrir o projeto no seu IDE e executar tal classe, onde você pode alterar os dados do PIX como desejar.
 
 ## 4. Atribuição
 
