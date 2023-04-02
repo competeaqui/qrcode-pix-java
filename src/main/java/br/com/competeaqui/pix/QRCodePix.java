@@ -274,6 +274,7 @@ public final class QRCodePix {
      * Salva o QRCode gerado com {@link #generate()}
      * em um arquivo de imagem.
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
+     * @param imageFileName caminho para o arquivo de imagem a ser gerado
      */
     public void save(final String imageFileName) {
         final var hintsMap = new EnumMap<>(EncodeHintType.class);
