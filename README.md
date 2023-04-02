@@ -42,4 +42,4 @@ Uma das formas de contribuir com o projeto é considerar o pagamento do QRCode m
 
 ## 7. Links
 
-- [Documentação oficial do PIX no repositório do Banco Central](https://github.com/bacen/pix-api)
+- [Documentação oficial do PIX no repositório do Banco Central do Brasil](https://github.com/bacen/pix-api)
