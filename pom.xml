@@ -54,6 +54,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <plugins>
+            <!-- Necessário para executar o JUnit em projetos Maven -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M7</version>
+            </plugin>
+
+            <!-- Necessário para executar o JUnit em projetos Maven -->
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.0.0-M7</version>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <!-- Gerar imagem de QRCode -->
@@ -65,6 +81,12 @@
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>20230227</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
