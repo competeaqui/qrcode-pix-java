@@ -32,7 +32,7 @@ class QRCodePixTest {
     /**
      * Cria uma instância de {@link QRCodePix} a partir de dados pré-definidos.
      * <p>
- *          <b>AVISO:</b> Se estes dados forem alterados, o arquivo {@link #QRCODE_FILENAME} precisa ser atualizado.
+     *     <b>AVISO:</b> Se estes dados forem alterados, o arquivo {@link #QRCODE_FILENAME} precisa ser atualizado.
      * </p>
      */
     @BeforeEach
