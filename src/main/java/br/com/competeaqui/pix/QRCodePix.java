@@ -13,8 +13,7 @@ import org.json.JSONObject;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.EnumMap;
 
 import static java.lang.Integer.toHexString;
@@ -291,6 +290,16 @@ public final class QRCodePix {
      * @param imageFileName caminho para o arquivo de imagem a ser gerado
      */
     public void save(final String imageFileName) {
+        saveInternal(imageFileName);
+    }
+
+    /**
+     * Método adicional usado apenas para propósitos de teste,
+     * para verificar se a imagem gerada é igual ao esperado.
+     * @param imageFileName caminho para o arquivo de imagem a ser gerado
+     * @return um vetor de bytes representando a imagem gerada
+     */
+    byte[] saveInternal(final String imageFileName) {
         final var hintsMap = new EnumMap<>(EncodeHintType.class);
         hintsMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
         hintsMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -317,7 +326,14 @@ public final class QRCodePix {
                 throw new IllegalArgumentException("Nome do arquivo deve conter a extensão para indicar o formato da imagem");
 
             final var format = fileNameParts[1];
-            ImageIO.write(image, format, new File(imageFileName));
+            final var baos = new ByteArrayOutputStream();
+            ImageIO.write(image, format, baos);
+            final var byteArray = baos.toByteArray();
+            try(final var fos = new FileOutputStream(imageFileName)) {
+                fos.write(byteArray);
+            }
+
+            return byteArray;
         } catch (IOException | WriterException e) {
             throw new RuntimeException(e);
         }
