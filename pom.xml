@@ -29,6 +29,12 @@
             <organization>Compete Aqui</organization>
             <organizationUrl>http://competeaqui.com.br</organizationUrl>
         </developer>
+        <developer>
+            <name>Fagno Alves Fonseca</name>
+            <email>fagno.fonseca@gmail.com</email>
+            <organization>Compete Aqui</organization>
+            <organizationUrl>http://competeaqui.com.br</organizationUrl>
+        </developer>
     </developers>
 
     <scm>
