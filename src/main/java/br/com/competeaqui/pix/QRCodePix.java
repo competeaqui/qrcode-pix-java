@@ -288,9 +288,22 @@ public final class QRCodePix {
      * em um arquivo de imagem.
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
      * @param imageFileName caminho para o arquivo de imagem a ser gerado
+     * @see #save()
      */
     public void save(final String imageFileName) {
         saveInternal(imageFileName);
+    }
+
+    /**
+     * Salva o QRCode gerado com {@link #generate()} em um arquivo de imagem temporário com nome aleatório.
+     * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
+     * @see #save(String)
+     * @return o caminho do arquivo gerado
+     */
+    public String save() {
+        final String imageFileName = tempImgFilePath();
+        saveInternal(imageFileName);
+        return imageFileName;
     }
 
     /**
