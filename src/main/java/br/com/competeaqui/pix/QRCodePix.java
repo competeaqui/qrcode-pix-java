@@ -290,12 +290,12 @@ public final class QRCodePix {
      * Salva o QRCode gerado com {@link #generate()}
      * em um arquivo de imagem.
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
-     * @param imageFileName caminho para o arquivo de imagem a ser gerado
+     * @param imagePath caminho para o arquivo de imagem a ser gerado
      * @see #save()
      * @see #saveAndGetBytes(Path)
      */
-    public void save(final Path imageFileName) {
-        saveAndGetBytes(imageFileName);
+    public void save(final Path imagePath) {
+        saveAndGetBytes(imagePath);
     }
 
     /**
@@ -306,9 +306,9 @@ public final class QRCodePix {
      * @see #saveAndGetBytes(Path)
      */
     public Path save() {
-        final Path imageFileName = tempImgFilePath();
-        saveAndGetBytes(imageFileName);
-        return imageFileName;
+        final Path imagePath = tempImgFilePath();
+        saveAndGetBytes(imagePath);
+        return imagePath;
     }
 
     /**

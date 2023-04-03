@@ -13,7 +13,7 @@ import java.nio.file.Path;
  */
 class AppPixQRCodeGenerator {
     public static void main(String[] args) {
-        final var imageFileName = "qrcode.png";
+        final var imagePath = "qrcode.png";
 
         final var dadosPix =
                 new DadosEnvioPix(
@@ -21,9 +21,9 @@ class AppPixQRCodeGenerator {
                         new BigDecimal("1.0"), "Palmas", "PIX em Java");
 
         final var qrCodePix = new QRCodePix(dadosPix);
-        qrCodePix.save(Path.of(imageFileName));
+        qrCodePix.save(Path.of(imagePath));
         System.out.println("QRCode:");
         System.out.println(qrCodePix);
-        System.out.printf("%nArquivo gerado em " + imageFileName);
+        System.out.printf("%nArquivo gerado em " + imagePath);
     }
 }
