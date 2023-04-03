@@ -80,4 +80,10 @@ class DadosEnvioPixInvalidosTest {
     void descricaoNull() {
         assertThrows(NullPointerException.class, () -> new DadosEnvioPix(ND, CD, V, CR, null));
     }
+
+    @Test
+    void descricaoMuitoGrande() {
+        final var descricaoInvalida = "a".repeat(73);
+        assertThrows(IllegalArgumentException.class, () -> new DadosEnvioPix(ND, CD, V, CR, descricaoInvalida));
+    }
 }

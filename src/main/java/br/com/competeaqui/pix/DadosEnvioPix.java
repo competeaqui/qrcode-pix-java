@@ -28,6 +28,11 @@ public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, B
         if(requireNonNull(nomeDestinatario).isBlank())
             throw new IllegalArgumentException("O nome do destinatário é obrigatório.");
         nomeDestinatario = nomeDestinatario.trim();
+        if(nomeDestinatario.length() > 25) {
+            final var msg = "Nome do destinatário não pode ter mais que 25 caracteres. '%s' tem %d caracteres."
+                    .formatted(nomeDestinatario, nomeDestinatario.length());
+            throw new IllegalArgumentException(msg);
+        }
 
         if(requireNonNull(chaveDestinatario).isBlank())
             throw new IllegalArgumentException("A chave PIX do destinatário é obrigatória.");
@@ -35,21 +40,18 @@ public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, B
 
         if(requireNonNull(cidadeRemetente).isBlank())
             throw new IllegalArgumentException("A cidade do remetente é obrigatória.");
-
-        requireNonNull(descricao, "A descrição não pode ser nula. Informe um texto vazio no lugar.");
-        descricao = descricao.trim();
-
-        nomeDestinatario = nomeDestinatario.trim();
-        if(nomeDestinatario.length() > 25) {
-            final var msg = "Nome do destinatário não pode ter mais que 25 caracteres. '%s' tem %d caracteres."
-                            .formatted(nomeDestinatario, nomeDestinatario.length());
-            throw new IllegalArgumentException(msg);
-        }
-
         cidadeRemetente = cidadeRemetente.trim();
         if(cidadeRemetente.length() > 15) {
             final var msg = "Cidade do remetente não pode ter mais que 15 caracteres. '%s' tem %d caracteres."
                     .formatted(cidadeRemetente, cidadeRemetente.length());
+            throw new IllegalArgumentException(msg);
+        }
+
+        requireNonNull(descricao, "A descrição não pode ser nula. Informe um texto vazio no lugar.");
+        descricao = descricao.trim();
+        if(descricao.length() > 72) {
+            final var msg = "Descrição não pode ter mais que 72 caracteres. '%s' tem %d caracteres."
+                    .formatted(descricao, descricao.length());
             throw new IllegalArgumentException(msg);
         }
 
