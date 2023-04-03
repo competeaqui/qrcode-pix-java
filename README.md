@@ -1,4 +1,5 @@
-# QRCode PIX Java [![build](https://github.com/competeaqui/qrcode-pix-java/actions/workflows/build.yml/badge.svg)](https://github.com/competeaqui/qrcode-pix-java/actions/workflows/build.yml) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fb792f128e9345008c9c5d6b545e29ae)](https://app.codacy.com/gh/competeaqui/qrcode-pix-java/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+# QRCode PIX Java [![build](https://github.com/competeaqui/qrcode-pix-java/actions/workflows/build.yml/badge.svg)](https://github.com/competeaqui/qrcode-pix-java/actions/workflows/build.yml) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/fb792f128e9345008c9c5d6b545e29ae)](https://app.codacy.com/gh/competeaqui/qrcode-pix-java/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade) [![Codacy Code Coverage](https://app.codacy.com/project/badge/Coverage/fb792f128e9345008c9c5d6b545e29ae)](https://www.codacy.com/gh/competeaqui/qrcode-pix-java/dashboard?utm_source=github.com&utm_medium=referral&utm_content=competeaqui/qrcode-pix-java&utm_campaign=Badge_Coverage)
+
 
 Biblioteca Java para geração de QRCode PIX "Copia e Cola" e exportação do código para imagem.
 
