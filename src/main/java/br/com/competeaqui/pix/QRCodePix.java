@@ -254,7 +254,7 @@ public final class QRCodePix {
      * @return o total como uma String de dois dígitos (incluindo zero à esquerda se necessário).
      * @throws IllegalArgumentException se a quantidade de caracteres do valor é maior que o permitido
     */
-    private String strLenLeftPadded(final String value) {
+    static String strLenLeftPadded(final String value) {
         if (value.length() > 99) {
             final var msg = "Tamanho máximo dos valores dos campos deve ser 99. '%s' tem %d caracteres.".formatted(value, value.length());
             throw new IllegalArgumentException(msg);
@@ -270,7 +270,7 @@ public final class QRCodePix {
      * @param code código de um campo do QRCode PIX
      * @return o código com um possível zero à esquerda
      */
-    private String leftPad(final String code) {
+    private static String leftPad(final String code) {
         return leftPad(code, 2);
     }
 
@@ -280,7 +280,7 @@ public final class QRCodePix {
      * @param len tamanho máximo da String retornada
      * @return o código com possíveis zeros à esquerda
      */
-    private String leftPad(final String code, final int len) {
+    private static String leftPad(final String code, final int len) {
         final var format = "%1$" + len + "s";
         return format.formatted(code).replace(' ', '0');
     }
@@ -317,6 +317,13 @@ public final class QRCodePix {
      * @throws WriterException se ocorrer erro durante a gravação de dados no arquivo
      */
     byte[] saveInternal(final String imageFileName) {
+        //Obtém a extensão do arquivo
+        final String[] fileNameParts = imageFileName.split("\\.(?=[^\\.]+$)");
+        if(fileNameParts.length == 1)
+            throw new IllegalArgumentException("Nome do arquivo deve conter a extensão para indicar o formato da imagem");
+
+        final var fileFormat = fileNameParts[1];
+
         final var hintsMap = new EnumMap<>(EncodeHintType.class);
         hintsMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
         hintsMap.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -337,14 +344,8 @@ public final class QRCodePix {
                 }
             }
 
-            //Obtém a extensão do arquivo
-            final String[] fileNameParts = imageFileName.split("\\.(?=[^\\.]+$)");
-            if(fileNameParts.length == 1)
-                throw new IllegalArgumentException("Nome do arquivo deve conter a extensão para indicar o formato da imagem");
-
-            final var format = fileNameParts[1];
             final var baos = new ByteArrayOutputStream();
-            ImageIO.write(image, format, baos);
+            ImageIO.write(image, fileFormat, baos);
             final var byteArray = baos.toByteArray();
             try(final var fos = new FileOutputStream(imageFileName)) {
                 fos.write(byteArray);
