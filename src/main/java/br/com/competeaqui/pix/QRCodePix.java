@@ -113,6 +113,7 @@ public final class QRCodePix {
      * <p>Com o uso de QR Code dinâmicos pode-se inclusive definir um WebHook onde o cliente final seja notificado
      * automaticamente quando determinada transação for recebida. Consulte os detalhes da API da sua instituição.</p>
      * @see QRCodePix#QRCodePix(DadosEnvioPix)
+     * @throws IllegalArgumentException quando o ID da transação é inválido
      */
     public QRCodePix(final DadosEnvioPix dadosPix, final String idTransacao) {
         if(idTransacao.length() > 25) {
@@ -127,7 +128,7 @@ public final class QRCodePix {
     /**
      * {@return um nome de arquivo PNG temporário} que pode ser usado para
      * {@link #save(String) salvar} a imagem do QRCode {@link #generate() gerado}.
-     * @throws IOException
+     * @throws UncheckedIOException se não for possível gerar um nome de arquivo temporário
      */
     static String tempImgFilePath() {
         try {
@@ -249,8 +250,9 @@ public final class QRCodePix {
     }
 
     /**
-    * Obtém o total de caracteres de uma String incluindo zero a esquerda se necessário.
-    * @return o total como uma String de dois dígitos (incluindo zero à esquerda se necessário).
+     * Obtém o total de caracteres de uma String incluindo zero a esquerda se necessário.
+     * @return o total como uma String de dois dígitos (incluindo zero à esquerda se necessário).
+     * @throws IllegalArgumentException se a quantidade de caracteres do valor é maior que o permitido
     */
     private String strLenLeftPadded(final String value) {
         if (value.length() > 99) {
@@ -311,6 +313,8 @@ public final class QRCodePix {
      * para verificar se a imagem gerada é igual ao esperado.
      * @param imageFileName caminho para o arquivo de imagem a ser gerado
      * @return um vetor de bytes representando a imagem gerada
+     * @throws IOException se não for possível acessar o arquivo para gravação
+     * @throws WriterException se ocorrer erro durante a gravação de dados no arquivo
      */
     byte[] saveInternal(final String imageFileName) {
         final var hintsMap = new EnumMap<>(EncodeHintType.class);
