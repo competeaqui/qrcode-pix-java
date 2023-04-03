@@ -35,6 +35,9 @@ public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, B
             throw new IllegalArgumentException(msg);
         }
 
+        if(valor.compareTo(BigDecimal.ZERO) <= 0)
+            throw new IllegalArgumentException("O valor do PIX deve ser maior que zero.");
+
         final var valorStr = formatNumber(valor);
         if(valorStr.length() > 13) {
             final var msg = "Valor não pode ter mais que 13 caracteres. '%s' tem %d caracteres."
