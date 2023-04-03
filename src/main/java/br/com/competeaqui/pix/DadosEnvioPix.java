@@ -6,6 +6,8 @@ package br.com.competeaqui.pix;
 
 import java.math.BigDecimal;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Dados a serem preenchidos pelo usuário para envio de um PIX.
  *
@@ -23,12 +25,28 @@ public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, B
     }
 
     public DadosEnvioPix {
+        if(requireNonNull(nomeDestinatario).isBlank())
+            throw new IllegalArgumentException("O nome do destinatário é obrigatório.");
+        nomeDestinatario = nomeDestinatario.trim();
+
+        if(requireNonNull(chaveDestinatario).isBlank())
+            throw new IllegalArgumentException("A chave PIX do destinatário é obrigatória.");
+        chaveDestinatario = chaveDestinatario.trim();
+
+        if(requireNonNull(cidadeRemetente).isBlank())
+            throw new IllegalArgumentException("A cidade do remetente é obrigatória.");
+
+        requireNonNull(descricao, "A descrição não pode ser nula. Informe um texto vazio no lugar.");
+        descricao = descricao.trim();
+
+        nomeDestinatario = nomeDestinatario.trim();
         if(nomeDestinatario.length() > 25) {
             final var msg = "Nome do destinatário não pode ter mais que 25 caracteres. '%s' tem %d caracteres."
                             .formatted(nomeDestinatario, nomeDestinatario.length());
             throw new IllegalArgumentException(msg);
         }
 
+        cidadeRemetente = cidadeRemetente.trim();
         if(cidadeRemetente.length() > 15) {
             final var msg = "Cidade do remetente não pode ter mais que 15 caracteres. '%s' tem %d caracteres."
                     .formatted(cidadeRemetente, cidadeRemetente.length());

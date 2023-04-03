@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static br.com.competeaqui.pix.DadosEnvioPixValorTest.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Testes de validação de parâmetros dos construtores de {@link DadosEnvioPix}.
@@ -18,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @author Manoel Campos da Silva Filho
  */
 class DadosEnvioPixInvalidosTest {
+    static final String EMPTY = "";
+    static final String BLANK = "    ";
     private static final BigDecimal V = new BigDecimal(1);
 
     /** Nome no limite do tamanho máximo. */
@@ -67,5 +68,16 @@ class DadosEnvioPixInvalidosTest {
     void cidadeRemetenteMuitoGrande() {
         final var cidadeInvalida = "a".repeat(16);
         assertThrows(IllegalArgumentException.class, () -> new DadosEnvioPix(ND, CD, V, cidadeInvalida));
+    }
+
+    @Test
+    void descricaoBlankChangedToEmpty() {
+        final var instance = new DadosEnvioPix(ND, CD, V, CR, BLANK);
+        assertTrue(instance.descricao().isEmpty());
+    }
+
+    @Test
+    void descricaoNull() {
+        assertThrows(NullPointerException.class, () -> new DadosEnvioPix(ND, CD, V, CR, null));
     }
 }
