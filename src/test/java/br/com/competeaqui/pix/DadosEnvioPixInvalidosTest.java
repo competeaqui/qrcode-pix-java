@@ -34,6 +34,11 @@ class DadosEnvioPixInvalidosTest {
         assertThrows(IllegalArgumentException.class, () -> new DadosEnvioPix(nomeInvalido, CD, V, CR));
     }
 
+    @Test
+    void chaveMuitoGrande() {
+        final var chaveInvalido = "a".repeat(78);
+        assertThrows(IllegalArgumentException.class, () -> new DadosEnvioPix(ND, chaveInvalido, V, CR));
+    }
 
     /** Valor no limite do tamanho máximo. */
     @Test

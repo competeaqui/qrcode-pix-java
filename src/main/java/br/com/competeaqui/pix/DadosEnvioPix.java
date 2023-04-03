@@ -37,6 +37,11 @@ public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, B
         if(requireNonNull(chaveDestinatario).isBlank())
             throw new IllegalArgumentException("A chave PIX do destinatário é obrigatória.");
         chaveDestinatario = chaveDestinatario.trim();
+        if(chaveDestinatario.length() > 77) {
+            final var msg = "Chave PIX do destinatário não pode ter mais que 77 caracteres. '%s' tem %d caracteres."
+                    .formatted(chaveDestinatario, chaveDestinatario.length());
+            throw new IllegalArgumentException(msg);
+        }
 
         if(requireNonNull(cidadeRemetente).isBlank())
             throw new IllegalArgumentException("A cidade do remetente é obrigatória.");
