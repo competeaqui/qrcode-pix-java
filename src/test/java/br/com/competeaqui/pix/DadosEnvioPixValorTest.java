@@ -22,44 +22,44 @@ class DadosEnvioPixValorTest {
 
     @Test
     void valorStr1Casa() {
-        final var instance = newInstance(new BigDecimal(1.0));
+        final var instance = newInstance(new BigDecimal("1.0"));
         assertEquals("1.00", instance.valorStr());
     }
 
     @Test
     void valorStr2Casas() {
-        final var instance = newInstance(new BigDecimal(1.00));
+        final var instance = newInstance(new BigDecimal("1.00"));
         assertEquals("1.00", instance.valorStr());
     }
 
     @Test
     void valorStr3Casas() {
-        final var instance = newInstance(new BigDecimal(1.234));
+        final var instance = newInstance(new BigDecimal("1.234"));
         assertEquals("1.23", instance.valorStr());
     }
 
     @Test
     void valorStr3CasasZerosNoMeio() {
-        final var instance = newInstance(new BigDecimal(1.001));
+        final var instance = newInstance(new BigDecimal("1.001"));
         assertEquals("1.00", instance.valorStr());
     }
 
     @Test
     void valorStr3CasasZeroFinal() {
-        final var instance = newInstance(new BigDecimal(1.230));
+        final var instance = newInstance(new BigDecimal("1.230"));
         assertEquals("1.23", instance.valorStr());
     }
 
     /** Teste de arredondamento pra cima. */
     @Test
     void valorStrMaisDe2CasasCeil() {
-        final var instance = newInstance(new BigDecimal(1.229));
+        final var instance = newInstance(new BigDecimal("1.229"));
         assertEquals("1.23", instance.valorStr());
     }
 
     @Test
     void valorStrMaisDe2CasasZeros() {
-        final var instance = newInstance(new BigDecimal(1.000));
+        final var instance = newInstance(new BigDecimal("1.000"));
         assertEquals("1.00", instance.valorStr());
     }
 

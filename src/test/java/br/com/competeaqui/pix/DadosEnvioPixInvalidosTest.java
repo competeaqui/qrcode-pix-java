@@ -37,14 +37,14 @@ class DadosEnvioPixInvalidosTest {
     /** Valor no limite do tamanho máximo. */
     @Test
     void valorNoLimite() {
-        final var valorInvalido = new BigDecimal(1234567890.00); // 13 caracteres (com o ponto)
+        final var valorInvalido = new BigDecimal("1234567890.00"); // 13 caracteres (com o ponto)
         assertDoesNotThrow(() -> new DadosEnvioPix(ND, CD, valorInvalido, CR));
     }
 
     /** Quando o total de caracteres do valor (incluíndo o ponto) é maior do que o suportado. */
     @Test
     void valorDoubleMuitoGrande() {
-        final var valorInvalido = new BigDecimal(12345678901.00); // 14 caracteres (com o ponto)
+        final var valorInvalido = new BigDecimal("12345678901.00"); // 14 caracteres (com o ponto)
         assertThrows(IllegalArgumentException.class, () -> new DadosEnvioPix(ND, CD, valorInvalido, CR));
     }
 

@@ -21,7 +21,7 @@ class QRCodePixTest {
      */
     private static final String QRCODE_FILENAME = "src/test/resources/qrcode-test.png";
 
-    private static final DadosEnvioPix DADOS = new DadosEnvioPix("Manoel", "11111111111", new BigDecimal(1.0), "Palmas");
+    private static final DadosEnvioPix DADOS = new DadosEnvioPix("Manoel", "11111111111", new BigDecimal("1.0"), "Palmas");
 
     /**
      * QRCode que deve ser gerado para os {@link #DADOS} definidos anteriormente.
