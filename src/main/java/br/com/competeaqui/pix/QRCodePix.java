@@ -9,11 +9,12 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import org.apache.commons.io.FilenameUtils;
 import org.json.JSONObject;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Path;
 import java.util.EnumMap;
 
 import static java.lang.Integer.toHexString;
@@ -23,7 +24,7 @@ import static java.lang.Integer.toHexString;
  * @see DadosEnvioPix
  * @author Manoel Campos da Silva Filho
  * @see #generate()
- * @see #save(String)
+ * @see #save(Path)
  */
 public final class QRCodePix {
     /**
@@ -127,12 +128,12 @@ public final class QRCodePix {
 
     /**
      * {@return um nome de arquivo PNG temporário} que pode ser usado para
-     * {@link #save(String) salvar} a imagem do QRCode {@link #generate() gerado}.
+     * {@link #save(Path) salvar} a imagem do QRCode {@link #generate() gerado}.
      * @throws UncheckedIOException se não for possível gerar um nome de arquivo temporário
      */
-    static String tempImgFilePath() {
+    static Path tempImgFilePath() {
         try {
-            return File.createTempFile("qrcode-pix-", ".png").getAbsoluteFile().getPath();
+            return Path.of(File.createTempFile("qrcode-pix-", ".png").getAbsoluteFile().getPath());
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
@@ -178,7 +179,7 @@ public final class QRCodePix {
     /**
      * Gera o QRCode PIX "Copia e Cola" para os dados informados.
      * @return o código gerado
-     * @see #save(String)
+     * @see #save(Path)
      * @see #toString()
      */
     public String generate() {
@@ -291,21 +292,21 @@ public final class QRCodePix {
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
      * @param imageFileName caminho para o arquivo de imagem a ser gerado
      * @see #save()
-     * @see #saveAndGetBytes(String)
+     * @see #saveAndGetBytes(Path)
      */
-    public void save(final String imageFileName) {
+    public void save(final Path imageFileName) {
         saveAndGetBytes(imageFileName);
     }
 
     /**
      * Salva o QRCode gerado com {@link #generate()} em um arquivo de imagem temporário com nome aleatório.
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
-     * @see #save(String)
+     * @see #save(Path)
      * @return o caminho do arquivo gerado
-     * @see #saveAndGetBytes(String)
+     * @see #saveAndGetBytes(Path)
      */
-    public String save() {
-        final String imageFileName = tempImgFilePath();
+    public Path save() {
+        final Path imageFileName = tempImgFilePath();
         saveAndGetBytes(imageFileName);
         return imageFileName;
     }
@@ -313,20 +314,18 @@ public final class QRCodePix {
     /**
      * Salva o QRCode gerado com {@link #generate()} em um arquivo de imagem.
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
-     * @param imageFileName caminho para o arquivo de imagem a ser gerado
+     * @param imagePath caminho para o arquivo de imagem a ser gerado
      * @return um vetor de bytes representando a imagem gerada
      * @throws IOException se não for possível acessar o arquivo para gravação
      * @throws WriterException se ocorrer erro durante a gravação de dados no arquivo
-     * @see #save(String)
+     * @see #save(Path)
      * @see #save()
      */
-    public byte[] saveAndGetBytes(final String imageFileName) {
+    public byte[] saveAndGetBytes(final Path imagePath) {
         //Obtém a extensão do arquivo
-        final String[] fileNameParts = imageFileName.split("\\.(?=[^\\.]+$)");
-        if(fileNameParts.length == 1)
+        final var fileFormat = FilenameUtils.getExtension(imagePath.toString());
+        if(fileFormat.isEmpty())
             throw new IllegalArgumentException("Nome do arquivo deve conter a extensão para indicar o formato da imagem");
-
-        final var fileFormat = fileNameParts[1];
 
         final var hintsMap = new EnumMap<>(EncodeHintType.class);
         hintsMap.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
@@ -351,7 +350,7 @@ public final class QRCodePix {
             final var baos = new ByteArrayOutputStream();
             ImageIO.write(image, fileFormat, baos);
             final var byteArray = baos.toByteArray();
-            try(final var fos = new FileOutputStream(imageFileName)) {
+            try(final var fos = new FileOutputStream(imagePath.toFile())) {
                 fos.write(byteArray);
             }
 
