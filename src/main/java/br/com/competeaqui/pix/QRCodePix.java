@@ -358,8 +358,7 @@ public final class QRCodePix {
     }
 
     /**
-     * Obtém o último QRCode gerado.
-     * @return
+     * {@return o último QRCode gerado.}
      * @see #generate()
      */
     @Override

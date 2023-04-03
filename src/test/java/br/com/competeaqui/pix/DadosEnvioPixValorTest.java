@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Testes para o campo {@link DadosEnvioPix#valor()}.
  *
- * <p>As constantes posuem nomes abreviados por são irrelevantes para os testes.
+ * <p>As constantes com nomes abreviados são irrelevantes para os testes.
  * Cada teste considera apenas o valor inválido passado por meio de uma variável
- * (as constantes são valores válidos).</p>
+ * (estas constantes são valores válidos).</p>
  *
  * @author Manoel Campos da Silva Filho
  */
