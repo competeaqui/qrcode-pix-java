@@ -18,6 +18,8 @@ import static java.util.Objects.requireNonNull;
  * @param descricao         descrição da transação (opcional)
  * @see QRCodePix
  * @author Manoel Campos da Silva Filho
+ * @throws IllegalArgumentException quando é passado um valor inválido para um campo
+ * @throws NullPointerException quando algum valor nulo é informado (mesmo para campos opcionais)
  */
 public record DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, BigDecimal valor, String cidadeRemetente, String descricao) {
     public DadosEnvioPix(String nomeDestinatario, String chaveDestinatario, BigDecimal valor, String cidadeRemetente) {
