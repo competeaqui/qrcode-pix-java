@@ -9,7 +9,8 @@ O projeto vem com uma aplicação console de exemplo que gera o código do PIX "
 
 Para testar, você pode abrir o app do seu banco e executar qualquer um dos passos a seguir. 
 
-> **Note:** Considere pagar o PIX como uma contribuição para o projeto. Isso nos ajuda a continuar o desenvolvimento.
+> **Note**
+> Considere pagar o PIX como uma contribuição para o projeto. Isso nos ajuda a continuar o desenvolvimento.
 
 ### 1.1. Copiar o código abaixo e colar na opção "PIX Copia e Cola".
 
