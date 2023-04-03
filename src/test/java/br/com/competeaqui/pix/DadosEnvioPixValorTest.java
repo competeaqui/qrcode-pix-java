@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Testes para o campo {@link DadosEnvioPix#valor()}.
@@ -19,6 +20,16 @@ class DadosEnvioPixValorTest {
     static final String ND = "Manoel";
     static final String CD = "11111111111";
     static final String CR = "Palmas";
+
+    @Test
+    void valorZero() {
+        assertThrows(IllegalArgumentException.class, () -> newInstance(BigDecimal.ZERO));
+    }
+
+    @Test
+    void valorNegativo() {
+        assertThrows(IllegalArgumentException.class, () -> newInstance(new BigDecimal(-1)));
+    }
 
     @Test
     void valorStr1Casa() {
