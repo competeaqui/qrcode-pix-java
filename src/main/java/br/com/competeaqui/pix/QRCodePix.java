@@ -338,9 +338,9 @@ public final class QRCodePix {
             final var image = new BufferedImage(tamanho, tamanho, BufferedImage.TYPE_INT_RGB);
             for (int y = 0; y < tamanho; y++) {
                 for (int x = 0; x < tamanho; x++) {
-                    final boolean bit = bitMatrix.get(x, y);
-                    final int cor = (bit ? 0 : 1) & 0xff;
-                    image.setRGB(x, y, (cor == 0 ? 0 : 0xFFFFFF));
+                    final var isBlack = bitMatrix.get(x, y);
+                    final int color = isBlack ? 0 : 0xFFFFFF; //black or white
+                    image.setRGB(x, y, color);
                 }
             }
 
