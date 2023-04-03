@@ -79,7 +79,7 @@ class QRCodePixTest {
         final var testName = getTestName(info);
         final String caminhoImgGerada = "target/test-classes/%s.png".formatted(testName);
         System.out.printf("Gerando arquivo temporário com QRCode em %s%n", caminhoImgGerada);
-        final byte[] bytesArqImgGerado = instance.saveInternal(caminhoImgGerada);
+        final byte[] bytesArqImgGerado = instance.saveAndGetBytes(caminhoImgGerada);
 
         final byte[] bytesArqImgEsperado = Files.readAllBytes(Paths.get(QRCODE_FILENAME));
         assertArrayEquals(bytesArqImgEsperado, bytesArqImgGerado);

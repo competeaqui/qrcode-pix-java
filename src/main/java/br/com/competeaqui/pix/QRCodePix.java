@@ -291,9 +291,10 @@ public final class QRCodePix {
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
      * @param imageFileName caminho para o arquivo de imagem a ser gerado
      * @see #save()
+     * @see #saveAndGetBytes(String)
      */
     public void save(final String imageFileName) {
-        saveInternal(imageFileName);
+        saveAndGetBytes(imageFileName);
     }
 
     /**
@@ -301,22 +302,25 @@ public final class QRCodePix {
      * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
      * @see #save(String)
      * @return o caminho do arquivo gerado
+     * @see #saveAndGetBytes(String)
      */
     public String save() {
         final String imageFileName = tempImgFilePath();
-        saveInternal(imageFileName);
+        saveAndGetBytes(imageFileName);
         return imageFileName;
     }
 
     /**
-     * Método adicional usado apenas para propósitos de teste,
-     * para verificar se a imagem gerada é igual ao esperado.
+     * Salva o QRCode gerado com {@link #generate()} em um arquivo de imagem.
+     * Se o código não foi gerado ainda, chama automaticamente o {@link #generate()}.
      * @param imageFileName caminho para o arquivo de imagem a ser gerado
      * @return um vetor de bytes representando a imagem gerada
      * @throws IOException se não for possível acessar o arquivo para gravação
      * @throws WriterException se ocorrer erro durante a gravação de dados no arquivo
+     * @see #save(String)
+     * @see #save()
      */
-    byte[] saveInternal(final String imageFileName) {
+    public byte[] saveAndGetBytes(final String imageFileName) {
         //Obtém a extensão do arquivo
         final String[] fileNameParts = imageFileName.split("\\.(?=[^\\.]+$)");
         if(fileNameParts.length == 1)
