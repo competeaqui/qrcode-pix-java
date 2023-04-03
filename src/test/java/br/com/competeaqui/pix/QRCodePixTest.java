@@ -2,6 +2,7 @@ package br.com.competeaqui.pix;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -73,8 +74,9 @@ class QRCodePixTest {
     }
 
     @Test
-    void save() throws IOException {
-        final String caminhoImgGerada = tempImgFilePath();
+    void saveAndCheckFileContent(final TestInfo info) throws IOException {
+        final var testName = getTestName(info);
+        final String caminhoImgGerada = "target/test-classes/%s.png".formatted(testName);
         System.out.printf("Gerando arquivo temporário com QRCode em %s%n", caminhoImgGerada);
         final byte[] bytesArqImgGerado = instance.saveInternal(caminhoImgGerada);
 
@@ -82,4 +84,27 @@ class QRCodePixTest {
         assertArrayEquals(bytesArqImgEsperado, bytesArqImgGerado);
     }
 
+    private static String getTestName(final TestInfo info) {
+        return info.getTestMethod()
+                   .map(m -> m.getDeclaringClass().getSimpleName() + "." + m.getName())
+                   .orElse(String.valueOf(System.currentTimeMillis()));
+    }
+
+    @Test
+    void saveRandomFileCheckExists() {
+        final String caminhoImgGerada = instance.save();
+        System.out.printf("Gerado arquivo temporário com QRCode em %s%n", caminhoImgGerada);
+        assertTrue(Files.exists(Paths.get(caminhoImgGerada)));
+    }
+
+    @Test
+    void saveFilenameWithoutExtension() {
+        assertThrows(IllegalArgumentException.class, () -> instance.save("nome-do-arquivo-sem-extensao"));
+    }
+
+    @Test
+    void strLenLeftPadded() {
+        final var strInvalidLen = "a".repeat(100);
+        assertThrows(IllegalArgumentException.class, () -> QRCodePix.strLenLeftPadded(strInvalidLen));
+    }
 }
