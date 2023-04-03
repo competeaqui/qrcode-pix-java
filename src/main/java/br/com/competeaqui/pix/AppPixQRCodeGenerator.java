@@ -1,6 +1,7 @@
 package br.com.competeaqui.pix;
 
 import java.math.BigDecimal;
+import java.nio.file.Path;
 
 /**
  * Gera um QRCode PIX "Copia e Cola" e a devida imagem na pasta atual.
@@ -20,7 +21,7 @@ class AppPixQRCodeGenerator {
                         new BigDecimal("1.0"), "Palmas", "PIX em Java");
 
         final var qrCodePix = new QRCodePix(dadosPix);
-        qrCodePix.save(imageFileName);
+        qrCodePix.save(Path.of(imageFileName));
         System.out.println("QRCode:");
         System.out.println(qrCodePix);
         System.out.printf("%nArquivo gerado em " + imageFileName);

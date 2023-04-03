@@ -3,10 +3,10 @@ package br.com.competeaqui.pix;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static br.com.competeaqui.pix.QRCodePix.tempImgFilePath;
@@ -54,7 +54,7 @@ class QRCodePixTest {
     }
 
     /**
-     * Ao chamar o método {@link QRCodePix#save(String)} antes do {@link QRCodePix#generate()},
+     * Ao chamar o método {@link QRCodePix#save(Path)} antes do {@link QRCodePix#generate()},
      * ele deve chamar o segundo, e então armazenar o resultado em um atributo retornado pelo toString().
      */
     @Test
@@ -77,7 +77,7 @@ class QRCodePixTest {
     @Test
     void saveAndCheckFileContent(final TestInfo info) throws IOException {
         final var testName = getTestName(info);
-        final String caminhoImgGerada = "target/test-classes/%s.png".formatted(testName);
+        final Path caminhoImgGerada = Paths.get("target/test-classes/%s.png".formatted(testName));
         System.out.printf("Gerando arquivo temporário com QRCode em %s%n", caminhoImgGerada);
         final byte[] bytesArqImgGerado = instance.saveAndGetBytes(caminhoImgGerada);
 
@@ -93,21 +93,21 @@ class QRCodePixTest {
 
     @Test
     void saveRandomFileCheckExists() {
-        final String caminhoImgGerada = instance.save();
+        final Path caminhoImgGerada = instance.save();
         System.out.printf("Gerado arquivo temporário com QRCode em %s%n", caminhoImgGerada);
-        assertTrue(Files.exists(Paths.get(caminhoImgGerada)));
+        assertTrue(Files.exists(caminhoImgGerada));
     }
 
     @Test
     void saveInvalidFile() {
-        final String invalidFileName = "\\///&&&.png";
+        final Path invalidFileName = Path.of("\\///&&&.png");
         final var exception = assertThrows(RuntimeException.class, () -> instance.save(invalidFileName));
         assertInstanceOf(IOException.class, exception.getCause());
     }
 
     @Test
     void saveFilenameWithoutExtension() {
-        assertThrows(IllegalArgumentException.class, () -> instance.save("nome-do-arquivo-sem-extensao"));
+        assertThrows(IllegalArgumentException.class, () -> instance.save(Path.of("nome-do-arquivo-sem-extensao")));
     }
 
     @Test
