@@ -28,6 +28,7 @@ class QRCodePixTest {
      * QRCode que deve ser gerado para os {@link #DADOS} definidos anteriormente.
      */
     private static final String QRCODE = "00020126370014BR.GOV.BCB.PIX011111111111111020052040000530398654041.005802BR5906Manoel6006Palmas62070503***630477F1";
+
     private QRCodePix instance;
 
     /**

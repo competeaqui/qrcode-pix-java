@@ -19,8 +19,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class DadosEnvioPixValorTest {
     /** Nome do Destinatário. */
     static final String ND = "Manoel";
+
     /** Chave PIX do Destinatário. */
     static final String CD = "11111111111";
+
     /** Cidade do Remetente. */
     static final String CR = "Palmas";
 
