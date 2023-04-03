@@ -46,3 +46,4 @@ Para enviar as alterações:
 - Execute `git push` para enviar seu branch para o GitHub.
 - A partir do seu fork no GitHub, abra uma Pull Request (responda às perguntas do template).
 - Aguarde suas contribuições serem avaliadas e obrigado antecipadamente.
+
