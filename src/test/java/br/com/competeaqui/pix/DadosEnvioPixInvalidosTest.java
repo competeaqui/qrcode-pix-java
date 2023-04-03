@@ -76,7 +76,7 @@ class DadosEnvioPixInvalidosTest {
     }
 
     @Test
-    void descricaoBlankChangedToEmpty() {
+    void descricaoBlankAlteradaPraEmpty() {
         final var instance = new DadosEnvioPix(ND, CD, V, CR, BLANK);
         assertTrue(instance.descricao().isEmpty());
     }
