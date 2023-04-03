@@ -98,8 +98,21 @@ class QRCodePixTest {
     }
 
     @Test
+    void saveInvalidFile() {
+        final String invalidFileName = "\\///&&&.png";
+        final var exception = assertThrows(RuntimeException.class, () -> instance.save(invalidFileName));
+        assertInstanceOf(IOException.class, exception.getCause());
+    }
+
+    @Test
     void saveFilenameWithoutExtension() {
         assertThrows(IllegalArgumentException.class, () -> instance.save("nome-do-arquivo-sem-extensao"));
+    }
+
+    @Test
+    void constructorIdTransacaoMuitoGrande() {
+        final var idInvalido = "i".repeat(26);
+        assertThrows(IllegalArgumentException.class, () -> new QRCodePix(DADOS, idInvalido));
     }
 
     @Test
