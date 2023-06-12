@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 *.png
+deploy.sh
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
